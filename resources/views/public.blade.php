@@ -167,6 +167,8 @@
         <img src="{{ asset('assests/logo.png') }}" alt="Centre de Langues" class="logo">
         {{-- أو ببساطة نص --}}
         {{-- <span class="logo-text">Centre de Langues</span> --}}
+        <!-- {{ date("H:i") }} -->
+        <div id="time">--:--</div>
     </div>
     <div class="header-right">
         <p style="padding-right: 30px;" class="slogan">Inscrivez-vous avec nous pour maîtriser les langues du monde 🌍</p>
@@ -202,6 +204,21 @@
     setInterval(() => {
         currentIndex = (currentIndex + 1) % slides.length;
         showSlide(currentIndex);
-    }, 5000);
+    }, 15000);
 </script>
+<script>
+    function updateTime() {
+        const now = new Date();
+        const time = now.toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        document.getElementById('time').textContent = time;
+    }
+
+    updateTime(); // initial
+    setInterval(updateTime, 1000); // update every second
+</script>
+
 @endsection
