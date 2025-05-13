@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\NewsController;
 
 Auth::routes();
 
@@ -32,3 +33,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/profile/password', [ProfileController::class, 'passwordForm'])->name('profile.password.form');
 Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
+
+Route::resource('news', NewsController::class)->middleware('auth');
