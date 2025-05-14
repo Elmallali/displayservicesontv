@@ -76,7 +76,11 @@
         </a>
         <a href="{{ route('services.index') }}" class="card-link">
             <h2>📚 Services</h2>
-            <p>Découvrez tous nos cours.</p>
+            <p>Ajoutez les services a Afficher dans le slideshow.</p>
+        </a>
+        <a href="{{ route('news.index') }}" class="card-link">
+            <h2>📰 News</h2>
+            <p>Ajoutez les Nouveautés.</p>
         </a>
         @auth
             <a href="{{ route('profile.show') }}" class="card-link">
