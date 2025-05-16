@@ -66,4 +66,12 @@ class NewsController extends Controller
         $news->delete();
         return redirect()->route('news.index')->with('success', '🗑️ Nouveauté supprimée.');
     }
+    public function toggleActive(News $news)
+{
+    $news->active = !$news->active;
+    $news->save();
+
+    return back()->with('success', 'État de la nouveauté mis à jour.');
+}
+
 }

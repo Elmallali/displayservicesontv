@@ -162,12 +162,15 @@
       overflow: hidden;
       white-space: nowrap;
       text-align: center;
+      border-left: 5px solid rgb(207, 14, 14); /* Ajoute un bord droit blanc */
+      border-right: 5px solid rgb(207, 14, 14); /* Ajoute un bord droit blanc */
   }
 
   .footer-right {
       flex: 0 0 auto;
       text-align: right;
       white-space: nowrap;
+  
   }
 
   .scrolling-news {
@@ -264,10 +267,13 @@
       opacity: 0.8;
   }
   .scrolling-logo {
-      height: 30px;
+      height: 40px;
       margin-bottom: 0.5rem;
       margin-left: 5rem;
       flex-shrink: 0;
+      background-color: rgba(255, 255, 255, 0.85); /* خلفية فاتحة مع شفافية */
+      padding: 4px;
+      border-radius: 8px;
   }
   .time-header {
       display: flex;
@@ -278,14 +284,17 @@
       color: white;
       font-family: 'Poppins', sans-serif;
   }
-
+  /* background-color: #6c6068;  */
   .logo-block {
       display: flex;
       align-items: center;
   }
 
   .logo-img {
-      height: 40px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.85); /* خلفية فاتحة مع شفافية */
+    padding: 6px;
+    border-radius: 8px;
   }
 
   .divider {
@@ -297,7 +306,7 @@
 
   .clock-container {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       padding: 3px 8px;
   }
 
@@ -340,6 +349,10 @@
       font-size: 0.7rem;
       opacity: 0.8;
   }
+  #time {
+  font-family: monospace;
+}
+
 </style>
 
 {{-- ✅ HEADER --}}
@@ -347,14 +360,14 @@
     <div class="header-left">
         <div class="time-header">
             <div class="logo-block">
-                <img src="{{ asset('assests/logo.png') }}" alt="Logo" class="logo-img">
+                <img src="{{ asset('assests/logo.png') }}" alt="Logo" class="logo-img logo-animated logo-animated.animate" >
             </div>
           
             <div class="divider"></div>
           
-            <div class="clock-container">
+            {{-- <div class="clock-container">
                 <span id="time" class="clock-text">--:--:--</span>
-            </div>
+            </div> --}}
 
             <div class="weather-container">
                 <i id="weather-icon" class="wi wi-day-sunny weather-icon"></i>
@@ -421,9 +434,11 @@
     
 
     <div class="footer-right">
-        {{ \Carbon\Carbon::now()->locale('fr')->isoFormat('dddd D MMMM YYYY') }} |
-        {{ \Carbon\Carbon::now()->locale('ar')->isoFormat('dddd D MMMM YYYY') }}
-    </div>
+        {{-- <div class="divider"></div> --}}
+        <div class="date-time-box text-end" style="font-size: 1.1rem; font-weight: bold;">
+            <span>{{ \Carbon\Carbon::now()->locale('fr')->isoFormat('dddd D MMMM YYYY') }}</span>
+            <span style="margin-left: 12px;" id="time"></span>
+        </div>
 </div>
 
 {{-- ✅ SCRIPTS --}}
@@ -500,8 +515,7 @@
 
     // Show promo every 5 minutes
     setInterval(() => {
-        showPromo();
-    }, 60*5*1000);
+        showPromo()}, 60*5*1000);
 
     // Weather API integration
     const weatherIcons = {

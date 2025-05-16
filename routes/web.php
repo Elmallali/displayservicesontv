@@ -35,3 +35,5 @@ Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->n
 
 
 Route::resource('news', NewsController::class)->middleware('auth');
+Route::patch('/news/{news}/toggle-active', [NewsController::class, 'toggleActive'])->name('news.toggleActive');
+
