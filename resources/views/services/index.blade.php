@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+
 @section('content')
 <style>
     :root {
@@ -105,7 +109,9 @@
 
     <div class="header-actions">
         <h2>Manage Services</h2>
+        @if(Auth::user()->role === 'admin')
         <a href="{{ route('services.create') }}" class="btn-add">+ Add New Service</a>
+        @endif
     </div>
     <div class="header-actions">
         <a href="{{ route('home') }}" class="text-decoration-none text-secondary mt-2 d-inline-block">
@@ -131,6 +137,7 @@
                             <div class="service-title">{{ $service->title }}</div>
                             <div class="service-desc">{{ $service->description }}</div>
 
+                            @if(Auth::user()->role === 'admin')
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('services.edit', $service->id) }}" class="btn-modern">Edit</a>
 
@@ -140,6 +147,7 @@
                                     <button type="submit" class="btn-modern">Delete</button>
                                 </form>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

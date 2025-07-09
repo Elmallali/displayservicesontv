@@ -229,6 +229,23 @@
     </div>
 
     <h1 class="welcome-heading">Bienvenue au Centre de Langues</h1>
+    
+    @php
+        use Illuminate\Support\Facades\Auth;
+    @endphp
+    
+    @if(Auth::check() && Auth::user()->role === 'admin')
+    <div class="alert alert-info mb-4" style="max-width: 800px; background-color: rgba(51, 148, 205, 0.18); border: 1px solid rgba(51, 148, 205, 0.3); color: #f0f0f0;">
+        <h5 class="alert-heading"><i class="fas fa-shield-alt me-2"></i>Information Administrateur</h5>
+        <p>En tant qu'administrateur, vous avez accès à toutes les fonctionnalités de gestion, y compris :</p>
+        <ul>
+            <li>Création et gestion des comptes utilisateurs</li>
+            <li>Modification des services et actualités</li>
+            <li>Gestion complète des données</li>
+        </ul>
+        <p class="mb-0">Les utilisateurs standards ne peuvent pas créer de comptes ni modifier les données.</p>
+    </div>
+    @endif
 
     <div class="cards-container">
         <a href="{{ route('public') }}" class="card-link">
@@ -254,8 +271,56 @@
                 <p>Ajoutez les nouveautés.</p>
             </div>
         </a>
-
+        
         @auth
+        <a href="{{ route('eleves.index') }}" class="card-link">
+            <div class="d-flex flex-column align-items-center text-center">
+                <span class="card-icon"><i class="fas fa-user-graduate"></i></span>
+                <h2>Élèves</h2>
+                <p>Gérez les élèves du centre.</p>
+            </div>
+        </a>
+        
+        <a href="{{ route('formateurs.index') }}" class="card-link">
+            <div class="d-flex flex-column align-items-center text-center">
+                <span class="card-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                <h2>Formateurs</h2>
+                <p>Gérez les formateurs.</p>
+            </div>
+        </a>
+        
+        <a href="{{ route('formations.index') }}" class="card-link">
+            <div class="d-flex flex-column align-items-center text-center">
+                <span class="card-icon"><i class="fas fa-graduation-cap"></i></span>
+                <h2>Formations</h2>
+                <p>Gérez les formations et niveaux.</p>
+            </div>
+        </a>
+        
+        <a href="{{ route('paiements.index') }}" class="card-link">
+            <div class="d-flex flex-column align-items-center text-center">
+                <span class="card-icon"><i class="fas fa-money-bill-wave"></i></span>
+                <h2>Paiements</h2>
+                <p>Suivi des paiements des élèves.</p>
+            </div>
+        </a>
+        
+        <a href="{{ route('salles.index') }}" class="card-link">
+            <div class="d-flex flex-column align-items-center text-center">
+                <span class="card-icon"><i class="fas fa-door-open"></i></span>
+                <h2>Salles</h2>
+                <p>Gérez les salles de cours.</p>
+            </div>
+        </a>
+        
+        <a href="{{ route('emploi-du-temps.index') }}" class="card-link">
+            <div class="d-flex flex-column align-items-center text-center">
+                <span class="card-icon"><i class="fas fa-calendar-alt"></i></span>
+                <h2>Emploi du temps</h2>
+                <p>Consultez l'emploi du temps.</p>
+            </div>
+        </a>
+        
         <a href="{{ route('profile.show') }}" class="card-link">
             <div class="d-flex flex-column align-items-center text-center">
                 <span class="card-icon"><i class="fas fa-user-circle"></i></span>
